@@ -37,8 +37,27 @@ En la mayoría de los equipos **el SSH está cerrado**. Por orden de comodidad:
 
 **1. En la Raspberry**
 
+Este repositorio es **privado**, así que un `curl` directo no funciona. Dos formas:
+
+*Con token* (si tienes uno de GitHub con permiso de lectura):
+
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Gesinne/wireguard/main/wireguard_rpi.sh -o wg.sh
+curl -fsSL -H "Authorization: token TU_TOKEN" \
+  https://raw.githubusercontent.com/Gesinne/wireguard/main/wireguard_rpi.sh -o wg.sh
+```
+
+*Copiando y pegando* (vale siempre, también en la consola web de Raspberry Pi
+Connect): abre el script, cópialo entero y en la Raspberry escribe:
+
+```bash
+cat > wg.sh << 'FIN'
+   ...aquí pegas el script entero...
+FIN
+```
+
+Y en los dos casos, después:
+
+```bash
 chmod +x wg.sh
 sudo ./wg.sh 165 <ip-del-hub> <clave-publica-del-hub>
 ```
